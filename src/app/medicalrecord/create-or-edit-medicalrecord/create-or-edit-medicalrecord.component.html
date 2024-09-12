@@ -1,0 +1,42 @@
+<form #cretMedicalRecord="ngForm" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left" *ngIf="medicalrecord.medicalRecordId==0 || medicalrecord.medicalRecordId==null">Create Medical Record</h4>
+      <h4 class="modal-title pull-left" *ngIf="medicalrecord.medicalRecordId>0">Edit Medical Record</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group row required">
+        <input type="text" class="form-control" hidden name="medicalRecordId" id="medicalRecordId" 
+        required maxlength="32" [(ngModel)]="medicalrecord.medicalRecordId" />
+        <label class="col-md-3 col-form-label" for="description">Description</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="description" id="description" 
+          required maxlength="32" [(ngModel)]="medicalrecord.description" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="diagnosis">Diagnosis</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="diagnosis" id="diagnosis" 
+          required maxlength="32" [(ngModel)]="medicalrecord.diagnosis" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="notes">Notes</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="notes" id="notes" 
+          required maxlength="32" [(ngModel)]="medicalrecord.notes" />
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Close</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>

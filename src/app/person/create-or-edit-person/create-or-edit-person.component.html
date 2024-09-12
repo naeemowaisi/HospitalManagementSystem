@@ -1,0 +1,68 @@
+  <form #cretPerson="ngForm" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left" *ngIf="person.personId==0 || person.personId==null">Create Person</h4>
+      <h4 class="modal-title pull-left" *ngIf="person.personId>0">Edit Person</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group row required">
+        <input type="text" class="form-control" hidden name="personId" id="personId" 
+        required maxlength="32" [(ngModel)]="person.personId" />
+        <label class="col-md-3 col-form-label" for="name">Name</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="name" id="name" 
+          required maxlength="32" [(ngModel)]="person.name" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="birthdate">Date Of Birth</label>
+        <div class="col-md-9">
+          <input type="date" class="form-control" name="birthdate" id="birthdate" 
+          required maxlength="32" [(ngModel)]="person.birthdate" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="address">Address</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="address" id="address" 
+          required maxlength="32" [(ngModel)]="person.address" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="email">Emial</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="email" id="email" 
+          required maxlength="32" [(ngModel)]="person.email" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="phoneNumber">Phone number</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" 
+          required maxlength="32" [(ngModel)]="person.phoneNumber" />
+        </div>
+      </div>
+      <br>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="gender">Gender</label>
+        <div class="col-md-9">
+          <select class="form-control" [(ngModel)]="gender" id="gender" name="gender">
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="3">Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Close</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>

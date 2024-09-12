@@ -1,0 +1,68 @@
+<form #cretAppointment="ngForm" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" *ngIf="appointment.appointmentId==0 || appointment.appointmentId==null">Create Appointment</h4>
+        <h4 class="modal-title pull-left" *ngIf="appointment.appointmentId>0">Edit Appointment</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="patientName">Patient Name</label>
+            <div class="col-md-9">
+                    <select (change)="getPatientDetailByidData($event.target)" class="form-control" id="patientId" name="patientId" [(ngModel)]="appointment.patientId" >
+                        <option *ngFor="let opt of patientList" [value]="opt.patientId" >{{opt.patientName}}</option>
+                  </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="doctorSpecialization">Specialization</label>
+            <div class="col-md-9">
+                    <select class="form-control" id="doctorId" name="doctorId" [(ngModel)]="appointment.doctorId" disabled="true">
+                        <option *ngFor="let opt of doctorList" [value]="opt.doctorId" >{{opt.doctorSpecialization}}</option>
+                  </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="dateTime">Date</label>
+            <div class="col-md-9">
+                <input type="date" class="form-control" name="dateTime" id="dateTime" required maxlength="32"
+                    [(ngModel)]="appointment.dateTime" />
+            </div>
+        </div>
+        <br>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="appointmentStatus">Status</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="appointmentStatus" id="appointmentStatus" required maxlength="32"
+                    [(ngModel)]="appointment.appointmentStatus" />
+            </div>
+        </div>
+        <br>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="diagnosisRecord">Diagnosis</label>
+            <div class="col-md-9">
+                    <select class="form-control" id="diagnosisRecord" name="diagnosisRecord" [(ngModel)]="appointment.medicalRecordId" >
+                        <option *ngFor="let opt of medicalrecordList" [value]="opt.medicalRecordId" >{{opt.diagnosisRecord}}</option>
+                  </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="paymentAmount">Amount</label>
+            <div class="col-md-9">
+                    <select class="form-control" id="paymentId" name="paymentId" [(ngModel)]="appointment.paymentId" disabled="true">
+                        <option *ngFor="let opt of paymentList" [value]="opt.paymentId" >{{opt.paymentAmount}}</option>
+                  </select>
+            </div>
+        </div>
+        <br>
+    </div>
+    <br>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

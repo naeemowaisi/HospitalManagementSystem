@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex d-flex justify-content-between">
+      <div>
+        <b>Payment</b>
+      </div>
+      <div>
+        <button (click)="createPayment()" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <!-- <th scope="col">Payment Id</th> -->
+            <th scope="col" style="width: 100px;">Patient Name</th>
+            <th scope="col" style="width: 100px;">Date</th>
+            <th scope="col" style="width: 100px;">Payment Method</th>
+            <th scope="col" style="width: 100px;">Amount</th>
+            <th scope="col" style="width: 100px;">Notes</th>
+            <th scope="col" style="width: 100px;">Action</th>
+          </tr>
+          <tr>
+            <th>
+              <input class="form-control" (keyup)="getPaymentsData()" [(ngModel)]="patientName" type="search"
+                placeholder="Search Name" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getPaymentsData()" [(ngModel)]="date" type="search"
+                placeholder="Search Date" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getPaymentsData()" [(ngModel)]="paymentMethod" type="search"
+                placeholder="Search Payment Method" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getPaymentsData()" [(ngModel)]="amount" type="search"
+                placeholder="Search Amount" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getPaymentsData()" [(ngModel)]="notes" type="search"
+                placeholder="Search Notes" aria-label="Search">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <!-- <td>{{payment.paymentId}}</td> -->
+            <td>{{payment.patientName}}</td>
+            <td>{{payment.date | date : 'MMMM d, y'}}</td>
+            <td>{{payment.paymentMethod}}</td>
+            <td>{{payment.amount}}</td>
+            <td>{{payment.notes}}</td>
+            <td>
+              <button routerLink="#" type="button" (click)="deletePayment(payment.paymentId)" class="btn btn-danger m-2">Delete</button>
+              <button routerLink="#" type="button" (click)="createPayment(payment.paymentId)" class="btn btn-primary">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

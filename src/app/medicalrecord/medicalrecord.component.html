@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header">
+      <div class="d-flex d-flex justify-content-between">
+        <div>
+          <b>Medical Record</b>
+        </div>
+        <div>
+          <button  class="btn btn-primary" (click)="createMedicalRecord()">Create</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Diagnosis</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Action</th>
+          </tr>
+          <tr>
+            <th>
+              <input class="form-control" (keyup)="getMedicalRecordData()" [(ngModel)]="description" type="search"
+                placeholder="Search Description" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getMedicalRecordData()" [(ngModel)]="diagnosis" type="search"
+                placeholder="Search Diagnosis" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getMedicalRecordData()" [(ngModel)]="notes" type="search"
+                placeholder="Search Notes" aria-label="Search">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medicalrecord of medicalrecords">
+            <td>{{medicalrecord.description}}</td>
+            <td>{{medicalrecord.diagnosis}}</td>
+            <td>{{medicalrecord.notes}}</td>
+            <td>
+              <button routerLink="#" type="button" (click)="deleteMedicalRecord(medicalrecord.medicalRecordId)" class="btn btn-danger m-2">Delete</button>
+              <button routerLink="#" type="button" (click)="createMedicalRecord(medicalrecord.medicalRecordId)" class="btn btn-primary">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

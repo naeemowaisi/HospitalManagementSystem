@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex d-flex justify-content-between">
+      <div>
+        <b>Person</b>
+      </div>
+      <div>
+        <button (click)="createPerson()" class="btn btn-primary m-2">Create</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 100px;">Name</th>
+          <th scope="col" style="width: 100px;">BirthDate</th>
+          <th scope="col" style="width: 100px;">Gender</th>
+          <th scope="col" style="width: 150px;">Phone Number</th>
+          <th scope="col" style="width: 150px;">Email</th>
+          <th scope="col" style="width: 150px;">Address</th>
+          <th scope="col" style="width: 150px;">Action</th>
+        </tr>
+        <tr>
+          <th>
+            <input class="form-control" (keyup)="getPersonsData()" [(ngModel)]="name" type="search"
+              placeholder="Search Name" aria-label="Search">
+          </th>
+          <th>
+            <input class="form-control me-1" (keyup)="getPersonsData()" [(ngModel)]="dateOfBirth" type="search"
+              placeholder="Search Date" aria-label="Search">
+          </th>
+          <th>
+            <select class="form-control" [(ngModel)]="gender" (change)="getPersonsData()" aria-placeholder="Gender">
+              <option value="0" selected>None</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Other</option>
+            </select>
+          </th>
+          <th>
+            <input class="form-control me-1" (keyup)="getPersonsData()" [(ngModel)]="phoneNumber" type="search"
+              placeholder="Search Number" aria-label="Search">
+          </th>
+          <th>
+            <input class="form-control me-1" (keyup)="getPersonsData()" [(ngModel)]="email" type="search"
+              placeholder="Search Email" aria-label="Search">
+          </th>
+          <th>
+            <input class="form-control me-1" (keyup)="getPersonsData()" [(ngModel)]="address" type="search"
+              placeholder="Search Address" aria-label="Search">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of persons">
+          <td>{{person.name}}</td>
+          <td>{{person.birthdate |date}}</td>
+          <td>
+            <span *ngIf="person.gender==1">Male</span>
+            <span *ngIf="person.gender==2">Female</span>
+            <span *ngIf="person.gender==3">Other</span>
+          </td>
+          <td>{{person.phoneNumber}}</td>
+          <td>{{person.email}}</td>
+          <td>{{person.address}}</td>
+          <td>
+            <button routerLink="#" type="button" (click)="deletePerson(person.personId)"
+              class="btn btn-danger m-2">Delete</button>
+            <button routerLink="#" type="button" (click)="createPerson(person.personId)"
+              class="btn btn-primary">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

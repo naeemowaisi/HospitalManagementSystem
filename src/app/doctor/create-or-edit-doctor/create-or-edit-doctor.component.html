@@ -1,0 +1,33 @@
+<form #cretDoctor="ngForm" class="form-horizontal" autocomplete="off" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" *ngIf="doctor.doctorId==0 || doctor.doctorId==null">Create Doctor</h4>
+        <h4 class="modal-title pull-left" *ngIf="doctor.doctorId>0">Edit Doctor</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="personName">Person Name</label>
+            <div class="col-md-9">
+                    <select class="form-control" id="personId" name="personId" [(ngModel)]="doctor.personId" >
+                        <option *ngFor="let opt of personList" [value]="opt.personId" >{{opt.personName}}</option>
+                  </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="specialization">Specialization</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="specialization" id="specialization" required maxlength="32"
+                    [(ngModel)]="doctor.specialization" />
+            </div>
+        </div>
+        <br>
+    </div>
+    <br>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

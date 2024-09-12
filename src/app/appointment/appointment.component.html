@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-header">
+      <div class="d-flex d-flex justify-content-between">
+        <div>
+          <b>Appointment</b>
+        </div>
+        <div>
+          <button (click)="createAppointment()" class="btn btn-primary">Create</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <!-- <th scope="col">AppointmentId</th> -->
+            <th scope="col" style="width: 100px;">Patient Name</th>
+            <th scope="col" style="width: 100px;">Specialization</th>
+            <th scope="col" style="width: 100px;">Date</th>
+            <th scope="col" style="width: 100px;">Status</th>
+            <th scope="col" style="width: 100px;">Diagnosis</th>
+            <th scope="col" style="width: 100px;">Amount</th>
+            <th scope="col" style="width: 100px;">Action</th>
+          </tr>
+          <tr>
+            <th>
+              <input class="form-control" (keyup)="getAppointmentData()" [(ngModel)]="patientName" type="search"
+                placeholder="Search Name" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getAppointmentData()" [(ngModel)]="doctorSpecialization" type="search"
+                placeholder="Search Specialization" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getAppointmentData()" [(ngModel)]="dateTime" type="search"
+                placeholder="Search DateTime" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getAppointmentData()" [(ngModel)]="appointmentStatus" type="search"
+                placeholder="Search Status" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getAppointmentData()" [(ngModel)]="diagnosisRecord" type="search"
+                placeholder="Search Diagnosis" aria-label="Search">
+            </th>
+            <th>
+              <input class="form-control" (keyup)="getAppointmentData()" [(ngModel)]="paymentAmount" type="search"
+                placeholder="Search Amount" aria-label="Search">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointments">
+            <!-- <td>{{appointment.appointmentId}}</td> -->
+            <td>{{appointment.patientName}}</td>
+            <td>{{appointment.doctorSpecialization}}</td>
+            <td>{{appointment.dateTime | date : 'MMMM d, y'}}</td>
+            <td>{{appointment.appointmentStatus}}</td>
+            <td>{{appointment.diagnosisRecord}}</td>
+            <td>{{appointment.paymentAmount}}</td>
+            <td>
+              <button routerLink="#" type="button" (click)="deleteAppointment(appointment.appointmentId)" class="btn btn-danger m-1">Delete</button>
+              <button routerLink="#" type="button" (click)="createAppointment(appointment.appointmentId)" class="btn btn-primary">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
