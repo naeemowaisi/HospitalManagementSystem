@@ -23,7 +23,9 @@ export class PaymentService {
     return this.http.get<Payment>(this.apiUrl+"/api/Payment/GetPaymentById?Id="+id)
   }
   deletePayment(id:number):Observable<any>{debugger
-    return this.http.delete(this.apiUrl+"/api/Payment/DeletePayment?id="+id)
+    return this.http.delete(this.apiUrl+"/api/Payment/DeletePayment?id="+id, {
+      responseType: 'text'  // Set responseType to 'text' to handle string responses
+    })
   }
   getPatientForDropdown():Observable<PatientDropdown[]>{
     return this.http.get<PatientDropdown[]>(this.apiUrl+"/api/Payment/GetPatientForDropdown");

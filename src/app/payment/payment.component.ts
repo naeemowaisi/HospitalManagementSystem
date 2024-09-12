@@ -3,6 +3,7 @@ import { PaymentService } from './payment.service';
 import { Payment } from '../model';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CreateOrEditPaymentComponent } from './create-or-edit-payment/create-or-edit-payment.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -16,6 +17,7 @@ export class PaymentComponent implements OnInit {
    paymentMethod!: string; 
    amount!: number; 
    notes!: string;
+   public responseMessage: string = '';
 
    constructor(public paymentService : PaymentService,private modalService : BsModalService){}
 
@@ -52,9 +54,27 @@ export class PaymentComponent implements OnInit {
     });
    }
    deletePayment(id:number){debugger
-    this.paymentService.deletePayment(id).subscribe(()=>{
-      alert("Deleted Successfully")
+    this.paymentService.deletePayment(id).subscribe({
+      next: (response: string) => {
+        this.responseMessage = response;
+        if(this.responseMessage!=""){
+          Swal.fire({
+            title: 'Failed!',
+            html: `<div style="font-size: 60px;">🖕</div><p>${this.responseMessage}</p>`,
+            showConfirmButton: true,
+            confirmButtonText: 'Ok'
+          })
+          return;
+        }
+        Swal.fire({
+          title: 'Success!',
+          text: `Deleted Successfully`,
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+       
       this.getPaymentsData();
+      }
     });
    }
 }
