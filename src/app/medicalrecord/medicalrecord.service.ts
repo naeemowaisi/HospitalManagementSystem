@@ -24,6 +24,8 @@ export class MedicalrecordService {
     return this.http.get<MedicalRecord>(this.apiUrl+"/api/MedicalRecord/GetMedicalRecordById?id="+id);
   }
   deleteMedicalRecord(id : number) : Observable<any>{
-    return this.http.delete(this.apiUrl+"/api/MedicalRecord/DeleteMedicalRecord?Id="+id);
+    return this.http.delete(this.apiUrl+"/api/MedicalRecord/DeleteMedicalRecord?Id="+id,{
+      responseType: 'text'  // Set responseType to 'text' to handle string responses
+    });
   }
 }
